@@ -29,7 +29,7 @@ public class TopicConsumer {
     
     public static void main(String[] args){
         JMSContext jmsContext = connectionFactory.createContext();
-        JMSConsumer jmsConsumer = jmsContext.createConsumer(topic); //NoDurable & NoShared
+        JMSConsumer jmsConsumer = jmsContext.createSharedConsumer(topic,"A"); //NonDurable & Shared
         
         while(true){
             System.out.println("Receiving Messages...");
