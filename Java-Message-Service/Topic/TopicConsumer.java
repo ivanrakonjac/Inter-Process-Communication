@@ -29,8 +29,7 @@ public class TopicConsumer {
     
     public static void main(String[] args){
         JMSContext jmsContext = connectionFactory.createContext();
-        jmsContext.setClientID("Domagoj");
-        JMSConsumer jmsConsumer = jmsContext.createDurableConsumer(topic, "A"); //Durable & NotShared
+        JMSConsumer jmsConsumer = jmsContext.createSharedDurableConsumer(topic, "B"); //Durable & Shared
         
         while(true){
             System.out.println("Receiving Messages...");
