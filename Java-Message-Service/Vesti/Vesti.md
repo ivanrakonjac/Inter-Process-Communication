@@ -1,0 +1,4 @@
+ZADATAK VESTI
+
+Napraviti sistem za objavljivanje vesti.Vesti su svrstane u tri kategorije: „OBAVESTENJE“, „STANDARDNO“, „BITNO“. Urednici kreiraju vesti i postavljaju ih na temu. Može postojati više urednika koji kreiraju i postavljaju vesti. Postoje èitaoci koji èitaju sve  vesti,  
+kao i tri klijentske aplikacije gde prva èita samo vesti iz kategorije „OBAVESTENJE“, drzga iz kategorije „STANDARDNO“, treæa iz kategorije „BITNO“.Èitaoci èitaju samo vesti koje pristignu dok su aktivni, dok tri klijentske aplikacije èitaju sve vesti koje pristignu ukljuèujuæi i one koje pristignu dok nisu bili aktivni.Urednikuje  za kreiranje jedne vesti potrebno5 sekundi. Èitaocu je potrebno 2 sekunde da proèita vest.
