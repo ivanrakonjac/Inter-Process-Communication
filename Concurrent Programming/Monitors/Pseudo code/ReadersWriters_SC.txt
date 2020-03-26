@@ -1,0 +1,28 @@
+monitor RW{
+	int nr=0; //brojReadera
+	int nw=0; //brojWritera
+
+	condition cr,cw;
+
+	void startRead(){
+		while(nw>0) wait(cr);  //while petlja jer je SC disiplina i ne znamo koji ce proces iz entry queue-a uci u monitor
+		nr++;
+		if(queue(cr)) signal_all(cr); //signal_all takodje jer je SC disciplina
+	}
+
+	void endRead(){
+		nr--;
+		if(nr==0) signal(cw);
+	}
+
+	void startWrite(){
+		while(nw>0 && nr>0) wait(cw);
+		nw++;
+	}
+
+	void endWrite(){
+		nw--;
+		if(queue(cw)) signal(cw);
+		else signal_all(cr);
+	}
+}

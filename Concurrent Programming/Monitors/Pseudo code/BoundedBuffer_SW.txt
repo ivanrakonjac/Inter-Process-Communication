@@ -1,0 +1,31 @@
+monitor BoundedBuffer<T>{
+	T[] data;
+
+	const N = ...;  //kapacitet
+	
+	int rear=0;
+	int front=0;
+	int size=0;
+
+	condition full,empty;
+
+	void put(T t){
+		if(size==N) wait(full) //ako je bafer pun, cekaj dok se ne isprazni
+		size++;
+		data[front] = t;
+		front = (front+1) % N;
+		signal(empty);	//dodao san nesto
+	}
+
+	T get(){
+		if(size==0) wait(empty); //ako je bafer prazan cekaj dok neko ne stavi nesto
+		size--;
+		T d = data[rear];
+		rear = (rear+1) % N;
+		signal(full);	//oslobodio sam mesto
+		return d;
+	}
+}
+
+//ovo resenje je za SW disciplinu
+//ako zelimo resenje za SC if -> while
