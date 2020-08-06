@@ -41,7 +41,9 @@ procedure Server{
 	bool status;
 	int state[N];
 
+	//provera da li filozof sme da jede
 	function test(int id){
+		//da li zeli da jede i da li ovi pored njega vec ne jedu
 		if(state[id]==hungry && state[(id+N-1)%N]!=eating && state[(id+1)%N]!=eating){
 			state[id]=eating;
 			mbx_put(m,philosopherBox[id]);			
@@ -49,6 +51,21 @@ procedure Server{
 	}
 
 	while(true){
-		if()
+		mbx_get(m,serverBox,INF,status);
+
+		switch(m.opr){
+
+			case 'pickup':
+				state[m.id] = hungry;
+				test(m.id);
+				break;
+
+			case 'putdown':
+				state[m.id] = think;
+				//proveri da li komsije zele da jedu
+				test((m.id + N - 1)%N);
+				test((m.id + 1)%N);
+				break;				
+		}
 	}
 }
